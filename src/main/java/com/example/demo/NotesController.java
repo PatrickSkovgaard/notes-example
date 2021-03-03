@@ -16,27 +16,27 @@ public class NotesController {
     @PostMapping("/addNote")
     public String addNote(@RequestParam("note") String note, HttpServletRequest request) {
         //get the notes from request session
-        List<String> notes = (List<String>) request.getSession().getAttribute("NOTES_SESSION");
+        List<String> notes = (List<String>) request.getSession().getAttribute("notesSession");
         //check if notes is present in session or not
         if (notes == null) {
             notes = new ArrayList<>();
             // if notes object is not present in session, set notes in the request session
-            request.getSession().setAttribute("NOTES_SESSION", notes);
+            request.getSession().setAttribute("notesSession", notes);
         }
         notes.add(note);
         //System.out.println(notes);
-        request.getSession().setAttribute("NOTES_SESSION", notes);
+        request.getSession().setAttribute("notesSession", notes);
         return "redirect:/home";
     }
 
     @GetMapping("/home")
     public String home(Model model, HttpSession session) {
-        List<String> notes = (List<String>) session.getAttribute("NOTES_SESSION");
-        if (notes != null) {
+        List<String> notes = (List<String>) session.getAttribute("notesSession");
+        if (notes == null) {
             notes = new ArrayList<>();
         }
 
-        model.addAttribute("notesSession", notes);
+        model.addAttribute("notes", notes);
         return "home";
     }
 
