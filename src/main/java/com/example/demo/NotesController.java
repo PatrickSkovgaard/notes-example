@@ -44,7 +44,7 @@ public class NotesController {
     @PostMapping("/invalidate/session")
     public String destroySession(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        //invalidate the session , this will clear the data from configured database (Mysql/redis/hazelcast)
+        //invalidate the session
         session.invalidate();
 
         return "redirect:/home";
