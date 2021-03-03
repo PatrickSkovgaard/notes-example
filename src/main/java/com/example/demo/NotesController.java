@@ -32,8 +32,11 @@ public class NotesController {
     @GetMapping("/home")
     public String home(Model model, HttpSession session) {
         List<String> notes = (List<String>) session.getAttribute("NOTES_SESSION");
-        System.out.println(notes);
-        model.addAttribute("notesSession", notes!=null? notes:new ArrayList<>());
+        if (notes != null) {
+            notes = new ArrayList<>();
+        }
+
+        model.addAttribute("notesSession", notes);
         return "home";
     }
 
