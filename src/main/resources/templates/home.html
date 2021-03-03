@@ -18,7 +18,7 @@
 </div>
 <div>
     <h2>Notes</h2>
-    <ul th:each="note : ${notes}">
+    <ul th:each="note : ${session.notes}">
         <li th:text="${note}"></li>
     </ul>
 </div>

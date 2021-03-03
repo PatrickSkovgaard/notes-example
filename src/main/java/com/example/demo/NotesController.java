@@ -38,8 +38,6 @@ public class NotesController {
             notes = new ArrayList<>();
         }
 
-        model.addAttribute("notes", notes);
-
         return "home";
     }
 
