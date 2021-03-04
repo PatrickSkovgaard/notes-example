@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class NotesController {
@@ -17,7 +15,7 @@ public class NotesController {
     public String addNote(@RequestParam("note") String note, HttpServletRequest request) {
         HttpSession session = request.getSession();
         //get the notes from request session
-        List<String> notes = (List<String>) session.getAttribute("notes");
+        ArrayList<String> notes = (ArrayList<String>) session.getAttribute("notes");
         //check if notes is present in session or not
         if (notes == null) {
             notes = new ArrayList<>();
@@ -31,13 +29,7 @@ public class NotesController {
     }
 
     @GetMapping("/home")
-    public String home(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        List<String> notes = (List<String>) session.getAttribute("notes");
-        if (notes == null) {
-            notes = new ArrayList<>();
-        }
-
+    public String home() {
         return "home";
     }
 

@@ -6,13 +6,13 @@
 </head>
 <body>
 <div>
-    <form th:action="@{/addNote}" method="post">
-        <textarea name="note" cols="40" rows="2"></textarea>
-        <br> <input type="submit" value="Add Note" />
+    <form action="/addNote" method="post">
+        <input name="note" />
+        <br> <button type="submit" >Add Note</button>
     </form>
 </div>
 <div>
-    <form th:action="@{/invalidate/session}" method="post">
+    <form action="/invalidate/session" method="post">
         <input type="submit" value="Destroy Session" />
     </form>
 </div>
